@@ -25,8 +25,11 @@ public class GolfCourse {
     @Column(name = "COURSE_NAME", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "CITY", length = 50) private String city;
-    @Column(name = "STATE", length = 50) private String state;
+    @Column(name = "CITY", length = 50)
+    private String city;
+
+    @Column(name = "STATE", length = 50)
+    private String state;
 
     @Column(name = "COUNTRY", nullable = false, length = 50)
     private String country;
@@ -39,10 +42,14 @@ public class GolfCourse {
     @Column(name = "DIFFICULTY")
     private DatabaseEnums.Difficulty difficulty;
 
-    @Column(name = "HOLES") private Integer holes;
+    @Column(name = "HOLES")
+    private Integer holes;
 
-    @Column(name = "SLOPE_RATING") private Integer slopeRating;
-    @Column(name = "COURSE_RATING", precision = 4, scale = 1) private BigDecimal courseRating;
+    @Column(name = "SLOPE_RATING")
+    private Integer slopeRating;
+
+    @Column(name = "COURSE_RATING", precision = 4, scale = 1)
+    private BigDecimal courseRating;
 
     @Column(name = "CREATED_AT", updatable = false, insertable = false)
     private Timestamp createdAt;
