@@ -10,8 +10,8 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "GolfCourse", uniqueConstraints = {
-        @UniqueConstraint(name = "UK_COURSE_LOC", columnNames = {"COURSE_NAME","CITY","STATE","COUNTRY"})
+@Table(name = "golfcourse", uniqueConstraints = {
+        @UniqueConstraint(name = "uk_course_loc", columnNames = {"course_name","city","state","country"})
 })
 @Getter
 @Setter
@@ -19,39 +19,38 @@ import java.sql.Timestamp;
 public class GolfCourse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "COURSE_ID")
-    private Long id;
+    @Column(name = "course_id")
+    private Integer id;
 
-    @Column(name = "COURSE_NAME", nullable = false, length = 100)
+    @Column(name = "course_name", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "CITY", length = 50)
+    @Column(name = "city", length = 50)
     private String city;
 
-    @Column(name = "STATE", length = 50)
+    @Column(name = "state", length = 50)
     private String state;
 
-    @Column(name = "COUNTRY", nullable = false, length = 50)
+    @Column(name = "country", nullable = false, length = 50)
     private String country;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "TYPE", nullable = false)
+    @Column(name = "type", nullable = false)
     private DatabaseEnums.CourseType type;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "DIFFICULTY")
+    @Column(name = "difficulty")
     private DatabaseEnums.Difficulty difficulty;
 
-    @Column(name = "HOLES")
+    @Column(name = "holes")
     private Integer holes;
 
-    @Column(name = "SLOPE_RATING")
+    @Column(name = "slope_rating")
     private Integer slopeRating;
 
-    @Column(name = "COURSE_RATING", precision = 4, scale = 1)
+    @Column(name = "course_rating", precision = 4, scale = 1)
     private BigDecimal courseRating;
 
-    @Column(name = "CREATED_AT", updatable = false, insertable = false)
+    @Column(name = "created_at", updatable = false, insertable = false)
     private Timestamp createdAt;
 }
-

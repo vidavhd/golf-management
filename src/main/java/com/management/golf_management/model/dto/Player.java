@@ -5,14 +5,16 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "Player", uniqueConstraints = {
-        @UniqueConstraint(name = "UK_PLAYER_EMAIL", columnNames = "EMAIL"),
-        @UniqueConstraint(name = "UK_PLAYER_PHONE", columnNames = "PHONE")
+@Table(name = "player", uniqueConstraints = {
+        @UniqueConstraint(name = "uk_player_email", columnNames = "email"),
+        @UniqueConstraint(name = "uk_player_phone", columnNames = "phone")
 })
 @Getter
 @Setter
@@ -20,45 +22,46 @@ import java.sql.Timestamp;
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PLAYER_ID")
-    private Long id;
+    @Column(name = "player_id")
+    private Integer id;
 
-    @Column(name = "FIRST_NAME", nullable = false, length = 50)
+    @Column(name = "first_name", nullable = false, length = 50)
     private String firstName;
 
-    @Column(name = "LAST_NAME", nullable = false, length = 50)
+    @Column(name = "last_name", nullable = false, length = 50)
     private String lastName;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "GENDER")
+    @Column(name = "gender")
     private DatabaseEnums.Gender gender = DatabaseEnums.Gender.OTHER;
 
-    @Column(name = "EMAIL", nullable = false, length = 100)
+    @Column(name = "email", nullable = false, length = 100)
     private String email;
 
-    @Column(name = "PHONE", length = 20)
+    @Column(name = "phone", length = 20)
     private String phone;
 
-    @Column(name = "STATE", length = 50)
+    @Column(name = "state", length = 50)
     private String state;
 
-    @Column(name = "COUNTRY", length = 50)
+    @Column(name = "country", length = 50)
     private String country;
 
-    @Column(name = "HANDICAP", nullable = false, precision = 4, scale = 1)
+    @Column(name = "handicap", nullable = false, precision = 4, scale = 1)
     private BigDecimal handicap;
 
-    @Column(name = "AGE")
+    @Column(name = "age")
     private Integer age;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "SKILL_LEVEL", nullable = false)
+    @Column(name = "skill_level", nullable = false)
     private DatabaseEnums.SkillLevel skillLevel;
 
-    @Column(name = "CREATED_AT", updatable = false, insertable = false)
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
     private Timestamp createdAt;
 
-    @Column(name = "UPDATED_AT", insertable = false)
+    @UpdateTimestamp
+    @Column(name = "updated_at")
     private Timestamp updatedAt;
 }
-

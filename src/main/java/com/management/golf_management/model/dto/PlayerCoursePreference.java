@@ -9,41 +9,40 @@ import lombok.ToString;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "PlayerCoursePreference",
+@Table(name = "playercoursereference",
         uniqueConstraints = {
-                @UniqueConstraint(name = "UQ_PC_PREF_PLAYER_COURSE_SEASON",
-                        columnNames = {"PLAYER_ID","COURSE_ID","SEASON"}),
-                @UniqueConstraint(name = "UQ_PC_PREF_PLAYER_SEASON_RANK",
-                        columnNames = {"PLAYER_ID","SEASON","PREFERENCE_RANK"})
+                @UniqueConstraint(name = "uq_pc_pref_player_course_season",
+                        columnNames = {"player_id","course_id","season"}),
+                @UniqueConstraint(name = "uq_pc_pref_player_season_rank",
+                        columnNames = {"player_id","season","preference_rank"})
         })
 @Getter
 @Setter
 @ToString
 public class PlayerCoursePreference {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PREFERENCE_ID")
+    @Column(name = "preference_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "PLAYER_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "player_id", referencedColumnName = "player_id", nullable = false)
     private Player player;
 
-    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "COURSE_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "course_id", referencedColumnName = "course_id", nullable = false)
     private GolfCourse course;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "SEASON", nullable = false)
+    @Column(name = "season", nullable = false)
     private Season season;
 
-    @Column(name = "PREFERENCE_TYPE", nullable = false, length = 10)
-    private String preferenceType; // or an enum if you prefer
+    @Column(name = "preference_type", nullable = false, length = 10)
+    private String preferenceType;
 
-    @Column(name = "PREFERENCE_RANK", nullable = false)
+    @Column(name = "preference_rank", nullable = false)
     private Integer preferenceRank;
 
-    @Column(name = "NOTES", length = 255)
+    @Column(name = "notes", length = 255)
     private String notes;
 
-    @Column(name = "CREATED_AT", updatable = false, insertable = false)
+    @Column(name = "created_at", updatable = false, insertable = false)
     private Timestamp createdAt;
 }
-
