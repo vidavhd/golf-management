@@ -1,0 +1,23 @@
+{
+  "mcps": [
+    {
+      "type": "http",
+      "name": "golf-api",
+      "baseUrl": "http://localhost:8080/api",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    {
+      "type": "database",
+      "name": "golf-database",
+      "connection": {
+        "host": "localhost",
+        "port": 3306,
+        "database": "golf_management_system",
+        "user": "root",
+        "password": "Luissaha@123"
+      }
+    }
+  ]
+}
