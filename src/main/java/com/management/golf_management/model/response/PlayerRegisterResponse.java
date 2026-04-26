@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,4 +17,5 @@ public class PlayerRegisterResponse {
     private String email;
     private DatabaseEnums.SkillLevel skillLevel;
     private String message;
+    private Timestamp registeredAt;
 }

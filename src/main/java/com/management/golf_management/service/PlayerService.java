@@ -1,11 +1,13 @@
 package com.management.golf_management.service;
 
 import com.management.golf_management.exception.DuplicateRegistrationException;
+import com.management.golf_management.mapper.PlayerMapper;
 import com.management.golf_management.model.dto.Player;
 import com.management.golf_management.model.request.PlayerRegisterRequest;
 import com.management.golf_management.model.response.PlayerRegisterResponse;
 import com.management.golf_management.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class PlayerService {
 
     @Autowired
-    private PlayerRepository playerRepository;
-    private final PlayerMapper playerMapper;
+    PlayerRepository playerRepository;
+
+    @Autowired
+    PlayerMapper playerMapper;
 
     public PlayerRegisterResponse registerPlayer(PlayerRegisterRequest request) {
         validateUniqueConstraints(request);

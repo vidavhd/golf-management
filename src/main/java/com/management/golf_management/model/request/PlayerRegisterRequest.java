@@ -24,6 +24,7 @@ public class PlayerRegisterRequest {
 
     @NotBlank(message = "Email is required")
     @Email(message = "Email should be valid")
+    @Size(max = 100)
     private String email;
 
     @NotBlank(message = "Phone is required")
@@ -40,9 +41,13 @@ public class PlayerRegisterRequest {
 
     private DatabaseEnums.Gender gender;
 
+    @Min(value = 5, message = "Age must be realistic")
+    @Max(value = 120, message = "Age must be realistic")
     private Integer age;
 
+    @Size(max = 50)
     private String state;
 
+    @Size(max = 50)
     private String country;
 }

@@ -17,9 +17,10 @@ public class GolfManagementController {
     PlayerService playerService;
 
     @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<PlayerRegisterResponse> registerPlayer(
             @Valid @RequestBody PlayerRegisterRequest request) {
-        return ResponseEntity.ok(playerService.registerPlayer(request));
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(playerService.registerPlayer(request));
     }
 }
